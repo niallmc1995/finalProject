@@ -6,3 +6,8 @@
 .info-text{
 text-align: center;
 }
+
+.mat-expansion-panel {
+    margin-left: 15%;
+    margin-right: 15%;
+}
