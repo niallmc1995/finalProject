@@ -10,3 +10,6 @@ textarea, mat-form-field{
     margin-right: 15%;
 }
 
+mat-spinner{
+  margin:auto;
+}
