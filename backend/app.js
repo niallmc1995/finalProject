@@ -5,12 +5,13 @@ const path = require("path");
 // var MongoClient = require('mongodb').MongoClient, Server = require('mongodb').Server;
 
 const postsRoutes = require('./routes/posts');
+const userRoutes = require("./routes/user");
 
 const app = express();
 
 mongoose
   .connect(
-    "mongodb+srv://niallmc:Gizs3PbG8PuBazeo@cluster0-drbp9.mongodb.net/node-angular?retryWrites=true",
+    "mongodb+srv://niallmc:Gizs3PbG8PuBazeo@cluster0-drbp9.mongodb.net/node-angular",
     { useNewUrlParser: true }
   )
 
@@ -40,5 +41,6 @@ app.use((req, res, next) => {
 });
 
 app.use('/api/posts', postsRoutes);
+app.use('/api/user', userRoutes);
 
 module.exports = app;
