@@ -13,9 +13,11 @@ import { AuthService } from '../../auth/auth.service';
     styleUrls: ['./post-create.component.css']
 })
 export class PostCreateComponent implements OnInit, OnDestroy {
-    enteredContent = '';
-    enteredTitle = '';
-    private mode = 'create';
+    //here I am adding the variables that will be used throuought this file
+    enteredContent = ''; // this will be handling the text entered content for a post
+    enteredTitle = ''; // this will be handling the title text content for a post
+    enteredmemeLink = ''; // this will be handling the meme link for the content
+    private mode = 'create'; //the create functionality
     private postId: string;
     private authStatusSub: Subscription;
     isLoading = false;
@@ -26,6 +28,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
 
     constructor(public postsService: PostsService, public route: ActivatedRoute, private authService: AuthService) { }
 
+    //here I am applying some custom form validation for creating a post
+    //such as requiring certain lengths that must be entered before creation of a post
+    
     ngOnInit() {
         this.authStatusSub = this.authService.getAuthStatusListener().subscribe(
             authStatus => {
@@ -40,7 +45,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             }),
             image: new FormControl(null, {
                 validators: [Validators.required], asyncValidators: [mimeType]
-            })
+            }),
+            memeLink: new FormControl(null, {
+                validators: [Validators.required]
+            }),
         });
         this.route.paramMap.subscribe((paramMap: ParamMap) => {
             if (paramMap.has('postId')) {
@@ -54,12 +62,14 @@ export class PostCreateComponent implements OnInit, OnDestroy {
                         title: postData.title,
                         content: postData.content,
                         imagePath: postData.imagePath,
+                        memeLink: postData.memeLink,
                         creator: postData.creator
                     };
                     this.form.setValue({
                         title: this.post.title,
                         content: this.post.content,
-                        image: this.post.imagePath
+                        image: this.post.imagePath,
+                        memeLink: this.post.memeLink
                     });
                 });
             } else {
@@ -83,9 +93,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     //     // this.postsService.addPost(form.value.title, form.value.content);
     // }
 
-
+// this function is telling the web app that the information that will be recieved will be in file form
     onImagePicked(event: Event) {
-        //telling application that the input will be taking in files
         const file = (event.target as HTMLInputElement).files[0];
         this.form.patchValue({ image: file });
         this.form.get('image').updateValueAndValidity();
@@ -96,21 +105,22 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         reader.readAsDataURL(file);
     }
 
-
+// this function here is making sure that the file that is being uploaded is meeting the requirements that I have specified
+// and is making sure that the file uploaded meets the requirements of only being an image format
     onSavePost() {
-        //this is checking if the image that will be uploaded is valid eg. not pdf or video etc
         if (this.form.invalid) {
             return;
         }
         this.isLoading = true;
         if (this.mode === 'create') {
-            this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image);
+            this.postsService.addPost(this.form.value.title, this.form.value.content, this.form.value.image, this.form.value.memeLink);
         } else {
             this.postsService.updatePost(
                 this.postId,
                 this.form.value.title,
                 this.form.value.content,
-                this.form.value.image
+                this.form.value.image,
+                this.form.value.memeLink
             );
         }
         this.form.reset();

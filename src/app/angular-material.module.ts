@@ -16,3 +16,5 @@ exports: [
 })
 
 export class AngularMaterialModule {}
+
+// this file is for handling all of the imports that any styling that is applied throughout the web application

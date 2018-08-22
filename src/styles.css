@@ -1,1 +1,54 @@
 /* You can add global styles to this file, and also import other style files */
+
+
+body {
+    background-image: url(https://cdn.dribbble.com/users/33046/screenshots/2902861/attachments/605661/icon-pattern-blue.png);
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+    cursor: pointer;
+    border-radius: 25px;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    margin-bottom:5%;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]){
+    text-transform: uppercase;
+    
+}
+
+.mat-card:not([class*=mat-elevation-z]){
+    border-radius:25px;
+}
+
+.mat-paginator {
+    display: block;
+    background-color: deepskyblue;
+    border-radius: 25px;
+    border: 2px solid black;
+    color: black;
+    font-weight: 600;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    border:2px solid black;
+}
+
+.mat-toolbar.mat-primary{
+    border-radius: 25px;
+}
+
+img#titleImage {
+    width: 100%;
+}
+
+img#titleImage {
+    width: 100%;
+}
+
+.post-image {
+    width: 45%;
+    margin: 0 auto;
+}

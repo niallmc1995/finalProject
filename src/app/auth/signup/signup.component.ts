@@ -22,7 +22,8 @@ export class SignupComponent implements OnInit, OnDestroy {
         }
       );
     }
-  
+
+  //handling whether the information entered into the signup form is valid or not and if it is then a user will be created
     onSignup(form: NgForm) {
       if (form.invalid) {
         return;

@@ -1,6 +1,9 @@
 <mat-card>
     <mat-spinner *ngIf='isLoading'></mat-spinner>
     <form (submit)="onLogin(loginForm)" #loginForm="ngForm" *ngIf='!isLoading'>
+        <div id='loginBanner'>
+            <h1>Hello, Please Login to MEMEIFY to start posting Memes</h1>
+        </div>
         <mat-form-field>
             <input matInput type="email" ngModel name="email" placeholder="E-mail" #emailInput="ngModel" required email>
             <mat-error *ngIf="emailInput.invalid">Please enter a valid email.</mat-error>

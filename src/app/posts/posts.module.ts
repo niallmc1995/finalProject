@@ -21,3 +21,5 @@ imports: [
 })
 
 export class PostsModule {}
+
+// this file is for handling all of the imports that any post related code would need to work

@@ -1,13 +1,14 @@
 const Post = require("../models/post");
 
-
-exports.creatPost = (req, res, next) => {
+//exporting the created post and sending the request to the host
+exports.createPost = (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     const post = new Post({
       title: req.body.title,
       content: req.body.content,
       imagePath: url + "/images/" + req.file.filename,
-      creator: req.userData.userId
+      creator: req.userData.userId,
+      memeLink: req.body.memeLink
     });
     post.save().then(createdPost => {
       res.status(201).json({
@@ -25,6 +26,7 @@ exports.creatPost = (req, res, next) => {
     });
   };
 
+  //exporting the updated post and sending the request to the host
   exports.updatePost = (req, res, next) => {
     let imagePath = req.body.imagePath;
     if (req.file) {
@@ -36,9 +38,11 @@ exports.creatPost = (req, res, next) => {
       title: req.body.title,
       content: req.body.content,
       imagePath: imagePath,
+      memeLink: req.body.memeLink,
       creator: req.userData.userId
     });
     
+    // conditional statement letting me know if the post was updated successfully or not
     Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
       if (result.n > 0) {
         res.status(200).json({ message: "Update successful!" });
@@ -49,7 +53,7 @@ exports.creatPost = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Couldn't update post"
+        message: "Could not update post"
       });
     });
   };
@@ -76,11 +80,12 @@ exports.creatPost = (req, res, next) => {
       })
       .catch(error => {
         res.status(500).json({
-          message: "Fetching Posts Failed"
+          message: "Could not fetch posts"
         });
       });
   };
 
+  //handling retrieving the post/s
   exports.getPost =  (req, res, next) => {
     Post.findById(req.params.id).then(post => {
       if (post) {
@@ -90,7 +95,7 @@ exports.creatPost = (req, res, next) => {
       }
     }).catch(error => {
       res.status(500).json({
-        message: "Fetching Post Failed"
+        message: "Could not fetch post"
       });
     });;
   };
@@ -106,7 +111,7 @@ exports.creatPost = (req, res, next) => {
     })
     .catch(error => {
       res.status(500).json({
-        message: "Fetching Posts Failed"
+        message: "Could not fetch posts"
       });
     });
   };

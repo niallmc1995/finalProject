@@ -17,19 +17,28 @@ export class PostListComponent implements OnInit, OnDestroy {
     //     {title: 'Second Post', content: 'This is the second post\'s content'},
     //     {title: 'Third Post', content: 'This is the third post\'s content'},
     // ];
-    posts: Post[] = [];
-    isLoading = false;
+
+    //here I am declaring all of the variables that will be needed for the post list
+    posts: Post[] = []; //the posts/post
+    isLoading = false; //the loading spinner
     totalPosts = 0;
-    postsPerPage = 2;
-    currentPage = 1;
-    pageSizeOptions = [1, 2, 5, 10];
-    userIsAuthenticated = false;
-    userId: string;
+    postsPerPage = 5; //specifying the amount of posts that will be displayed per page
+    currentPage = 1; // specifying the page that will be started on
+    pageSizeOptions = [1, 2, 5, 10]; //specifying the options for the amount of posts to be viewed per page
+    userIsAuthenticated = false; //automatically setting any users authentication to be false as they will be required to log in
+    userId: string; //the users unique id given to then after they sign up and login
     private postsSub: Subscription;
     private authStatusSub: Subscription;
 
     constructor(public postsService: PostsService, private authService: AuthService) { }
 
+    /*this function is applying our variables for:
+     * the posts per page
+     * making sure that the user is authenticated
+     * firing the action to ru the spinner when required to do so
+     * retreiving the posts on the posts list page
+
+    */
     ngOnInit() {
         this.isLoading = true;
         this.postsService.getPosts(this.postsPerPage, 1);

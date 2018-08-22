@@ -1,5 +1,9 @@
 const jwt = require("jsonwebtoken");
 
+
+//**REFERENCE 
+// https://jwt.io/introduction/ 
+// https://www.udemy.com/angular-2-and-nodejs-the-practical-guide/*/
 module.exports = (req, res, next) => {
     try{
         const token = req.headers.authorization.split(" ")[1];

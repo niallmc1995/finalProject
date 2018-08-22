@@ -27,3 +27,47 @@ mat-paginator{
     margin-left: 50%;
 
 }
+
+.mat-expansion-panel {
+    background-color: deepskyblue!important;
+    border-radius: 25px;
+    
+  }
+
+  .post-image img{
+    width:100%;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+    border-radius:25px;
+}
+
+/* changes */
+
+img#recentImage {
+    width: 20%;
+    display: inline-block;
+    float: left;
+    height: 130px;
+}
+
+#postList{
+    float: left;
+    width:100%;
+}
+
+#recentImages{
+    width:100%;
+   
+
+}
+
+#mainContent{
+    width:100%;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+    margin-top:4%;
+}
+
+.mat-accordion>.mat-expansion-panel-spacing:first-child, .mat-accordion>:first-child:not(.mat-expansion-panel) .mat-expansion-panel-spacing{
+    margin-top:5%;
+}

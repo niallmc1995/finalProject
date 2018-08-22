@@ -31,10 +31,14 @@ import { PostsModule } from './posts/posts.module';
 
   ],
   providers: [
+    //this interceptor is used for the Authentication to be applied throughout the web app where required
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    //this interceptor is used for the Error handling functionality so that every page if needed can access its functionality
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
   ],
   bootstrap: [AppComponent],
   entryComponents: [ErrorComponent]
 })
 export class AppModule { }
+
+

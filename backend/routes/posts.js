@@ -14,7 +14,7 @@ router.post(
   "",
   checkAuth,
   extractFile,
-  PostController.creatPost
+  PostController.createPost
 );
 
 router.put(

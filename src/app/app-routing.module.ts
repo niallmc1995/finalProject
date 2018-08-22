@@ -19,3 +19,6 @@ providers: [AuthGuard]
 })
 
 export class AppRoutingModule {}
+
+
+// this file is for handling all of the imports and paths for navigation that are needed

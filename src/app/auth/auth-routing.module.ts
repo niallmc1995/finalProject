@@ -20,3 +20,6 @@ declarations: [
 })
 
 export class AuthRoutingModule {}
+
+//I have split this code into this file purely for ease of reading the code and to have it more legible
+// it is for handling the navigation of the login component and the signup component

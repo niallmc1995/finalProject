@@ -26,3 +26,24 @@ input[type='file']{
 .image-preview img {
   height:100%;
 }
+
+.mat-expansion-panel {
+  background-color: deepskyblue!important;
+  border-radius: 25px;
+}
+
+
+
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  cursor: pointer;
+  border-radius: 25px;
+}
+
+.mat-expansion-panel:not([class*=mat-elevation-z]){
+  margin-bottom:5%;
+}
+
+.mat-expansion-panel-header:not([aria-disabled=true]){
+  text-transform: uppercase;
+  
+}

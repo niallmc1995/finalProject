@@ -21,3 +21,5 @@ declarations: [
 })
 
 export class AuthModule {}
+
+// I have split the auth module from the app module purely for easy reading and clarity, specifying the elements which would be required for this module
